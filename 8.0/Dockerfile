@@ -22,7 +22,16 @@ RUN set -x; \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
         && pip install psycogreen==1.0 
         
+# Install less
+RUN apt-get update
 
+RUN apt-get install -y nodejs npm
+
+RUN npm config set registry http://registry.npm.taobao.org
+
+RUN npm install -g less less-plugin-clean-css
+
+RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Install Odoo
 ENV ODOO_VERSION 8.0
